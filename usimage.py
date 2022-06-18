@@ -13,7 +13,7 @@ class ImageSegmenter():
         image = self.preprocess(image)
         mask = self.model.predict(image)
         mask = self.mask2image(mask)
-        mask = tf.image.resize(mask, (image_size[0], image_size[1]))
+        mask = tf.image.resize(mask, (image_size[0], image_size[1]), method='nearest')
         mask = tf.floor(mask)
         return tf.squeeze(mask)/3
 
